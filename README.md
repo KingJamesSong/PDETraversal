@@ -7,7 +7,7 @@ ICML23 paper "[Latent Traversals in Generative Models as Potential Flows](https:
 
 
 <p align="center">
-<img src="workflow.pdf" width="800px"/>
+<img src="workflow.jpg" width="800px"/>
 <br>
 Overview of our learned potential PDEs for latent traversal in two different experimental settings.
 </p>
