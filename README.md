@@ -7,15 +7,15 @@ ICML23 paper "[Latent Traversals in Generative Models as Potential Flows](https:
 
 ## Pre-trained GAN
 
-Please first run [checkpoint2model.py]() for downloading pre-trained GANs, and run [anime.sh]() and [anime_eval.sh]() for the training potential functions and evaluation.
+Please first run [checkpoint2model.py](https://github.com/KingJamesSong/PDETraversal/blob/main/checkpoint2model.py) for downloading pre-trained GANs, and run [anime.sh](https://github.com/KingJamesSong/PDETraversal/blob/main/scripts/anime.sh) and [anime_eval.sh](https://github.com/KingJamesSong/PDETraversal/blob/main/scripts/anime_eval.sh) for the training potential functions and evaluation.
 
 ## Pre-trained VAE
 
-Please first run [train_vae.py]() to train VAEs and then run [mnist.sh]() for training potentials.
+Please first run [train_vae.py](https://github.com/KingJamesSong/PDETraversal/blob/main/models/train_vae.py) to train VAEs and then run [mnist.sh](https://github.com/KingJamesSong/PDETraversal/blob/main/scripts/mnist.sh) for training potentials.
 
 ## Training VAE from scratch
 
-Please run [mnist_scratch.sh]() for training VAEs and potentials simultaneously.
+Please run [mnist_scratch.sh](https://github.com/KingJamesSong/PDETraversal/blob/main/scripts/mnist_scratch.sh) for training VAEs and potentials simultaneously.
 
 ## Citation
 
