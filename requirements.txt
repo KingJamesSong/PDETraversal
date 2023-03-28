@@ -1,0 +1,20 @@
+numpy
+torch
+torchvision
+tensorboard
+scipy
+matplotlib
+imageio
+Pillow
+ninja
+ipython
+notebook
+opencv-python
+tqdm
+scikit-image
+iou
+sklearn
+pandas
+# pyqt5
+# pyqt5-tools
+# pip install torch==1.8.0+cu111 torchvision==0.9.0+cu111 torchaudio==0.8.0 -f https://download.pytorch.org/whl/torch_stable.html
