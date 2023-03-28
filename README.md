@@ -5,6 +5,13 @@ ICML23 paper "[Latent Traversals in Generative Models as Potential Flows](https:
 <sup>1</sup>University of Amsterdam, the Netherlands <br>
 <sup>2</sup>University of Trento, Italy <br> 
 
+
+<p align="center">
+<img src="workflow.pdf" width="800px"/>
+<br>
+Overview of our learned potential PDEs for latent traversal in two different experimental settings.
+</p>
+
 ## Pre-trained GAN
 
 Please first run [checkpoint2model.py](https://github.com/KingJamesSong/PDETraversal/blob/main/checkpoint2model.py) for downloading pre-trained GANs, and run [anime.sh](https://github.com/KingJamesSong/PDETraversal/blob/main/scripts/anime.sh) and [anime_eval.sh](https://github.com/KingJamesSong/PDETraversal/blob/main/scripts/anime_eval.sh) for the training potential functions and evaluation.
