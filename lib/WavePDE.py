@@ -124,7 +124,8 @@ class WavePDE(nn.Module):
     def forward(self, index, z, t, generator):
         mse_ic = self.loss_ic(self.MLP_SET[index],z)
         mse_pde = 0.0
-        for i in range(0,self.num_support_timesteps):
+        half_range = self.params.num_support_timesteps // 2
+        for i in range(0,half_range):
             t_index = i*torch.ones(1,1,requires_grad=True,device=z.device)
             mse_pde_t_index, u_z , u = self.loss_pde(self.MLP_SET[index],z,t_index,self.c[index],generator)
             if i == int(t[0]):
@@ -134,7 +135,7 @@ class WavePDE(nn.Module):
                 latent2 = z + u_z + u_z1
             z = z + u_z
             mse_pde = mse_pde + mse_pde_t_index
-        loss = mse_ic + mse_pde/self.num_support_timesteps - mse_jvp
+        loss = mse_ic + mse_pde/half_range - mse_jvp
         return energy, latent1, latent2, loss
 
     def inference(self, index, z, t, generator):
