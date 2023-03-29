@@ -185,19 +185,6 @@ if __name__ == '__main__':
         for i in range(S.num_support_sets):
             S.MLP_SET[i].activation4 = nn.Identity()
 
-    if opt.sefa:
-        print(netG.G)
-        weight = netG.G[0].weight.data
-        u, s, v = torch.svd(weight)
-        print(weight.size())
-        inter_directions = u[:S.num_support_sets,:]
-    #    weight_name = 'layers.0.layers.conv.weight'
-    #    weight = state_dict[weight_name]
-    #    size = weight.size()
-    #    weight = weight.reshape((weight.size(0), -1)).T
-    #    U, S, V = torch.svd(weight)
-    #    new_weight = U * S.unsqueeze(0).repeat((U.size(0), 1))
-    #    state_dict[weight_name] = new_weight.T.reshape(size)
 
     S.eval()
 
@@ -236,18 +223,13 @@ if __name__ == '__main__':
         delta_dim = torch.randint(0,S.num_support_sets,(1,1),requires_grad=False)
 
 
-        if opt.sefa:
-            delta_z = inter_directions[delta_dim.squeeze(),:].repeat(batch_size,1)
-            z_shifted = z_1 + delta_z
-        else:
-            if args_json.__dict__["shift_in_w_space"]:
-                z_1 = netG.get_w(z_1)
-            z_shifted = z_1.clone()
-            for step in range(S.num_support_dipoles):
-                _, shift = S.inference(delta_dim, z_shifted, step * torch.ones(1, 1, requires_grad=True), netG)
-                z_shifted = z_shifted + shift
-            #energy,z_shifted, z_shifted2 ,_ = S(delta_dim, z_1, (S.num_support_dipoles/2-1) * torch.ones(1, 1, requires_grad=True), netG)
-
+        if args_json.__dict__["shift_in_w_space"]:
+            z_1 = netG.get_w(z_1)
+        z_shifted = z_1.clone()
+        for step in range(S.num_support_dipoles):
+            _, shift = S.inference(delta_dim, z_shifted, step * torch.ones(1, 1, requires_grad=True), netG)
+            z_shifted = z_shifted + shift
+     
         delta_onehot = np.zeros((batch_size, nz))
         delta_onehot[:, delta_dim.squeeze()] = 1
 
