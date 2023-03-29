@@ -1,6 +1,6 @@
 gan_type="SNGAN_AnimeFaces"
 num_support_sets=32
-num_support_timesteps=16
+num_support_timesteps=20
 reconstructor_type="LeNet"
 batch_size=128
 max_iter=120000
