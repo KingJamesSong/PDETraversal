@@ -16,7 +16,7 @@ from torch.distributions.normal import Normal
 
 angle_set = [0, 10, 20, 30, 40, 50, 60 , 70 ,80]
 color_set = [180, 200, 220, 240, 260, 280 ,300 , 320, 340]
-scale_set = [1.0, 1.1, 1.2, 1,3, 1.4, 1.5 , 1.6 , 1.7, 1.8]
+scale_set = [1.0, 1.1, 1.2, 1.3, 1.4, 1.5 , 1.6 , 1.7, 1.8]
 mnist_trans = AddRandomTransformationDims(angle_set=angle_set,color_set=color_set,scale_set=scale_set)
 mnist_color = To_Color()
 
