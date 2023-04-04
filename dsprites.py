@@ -36,19 +36,14 @@ class SequenceDataset(Dataset):
 
             #for t in range(self.seq_len):
             #print(step % self.factor_sizes[transform_idx])
-            if index<2:
-                xt_feat[transform_idx] = (x0_feat[transform_idx] + (step.cpu().numpy())) % self.factor_sizes[transform_idx]
-            else:
-                xt_feat[transform_idx] = (x0_feat[transform_idx] + 2*(step.cpu().numpy())) % self.factor_sizes[transform_idx]
+           
+            xt_feat[transform_idx] = (x0_feat[transform_idx] + (step.cpu().numpy())) % self.factor_sizes[transform_idx]
             xt_idx = self.index_manager.features_to_index(xt_feat)
             xt = self.data[xt_idx]
             img_x_seq.append(xt.copy())
             feat_x_seq.append(xt_feat.copy())
 
-            if index < 2:
-                xt_feat1[transform_idx] = (x0_feat[transform_idx] + (step.cpu().numpy()+1)) % self.factor_sizes[transform_idx]
-            else:
-                xt_feat1[transform_idx] = (x0_feat[transform_idx] + 2*(step.cpu().numpy() + 1)) % self.factor_sizes[transform_idx]
+            xt_feat1[transform_idx] = (x0_feat[transform_idx] + (step.cpu().numpy()+1)) % self.factor_sizes[transform_idx]
             xt_idx1 = self.index_manager.features_to_index(xt_feat1)
             xt1 = self.data[xt_idx1]
             img_x_seq.append(xt1.copy())
@@ -138,7 +133,7 @@ class DSpritesDataset(SequenceDataset):
         self.metadata = full_data['metadata'][()]
 
         original_factor_sizes = [3, 6, 40, 32, 32]
-        speeds = [1, 1, 2, 2, 2]
+        speeds = [1, 1, 4, 4, 4]
         start_idx = [0, 1, 0, 0, 0]
         data_by_factor = self.data.reshape((*original_factor_sizes,) + (64, 64))
 
