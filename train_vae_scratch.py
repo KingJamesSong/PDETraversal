@@ -134,23 +134,10 @@ def main():
     # Set up trainer
     print("#. Experiment: {}".format(exp_dir))
     config = {
-        'wandb_on': False,
-        'lr': 1e-4,
-        'momentum': 0.9,
-        'max_epochs': 100,
-        'eval_epochs': 5,
-        'dataset': 'DSprites',
         'seq_transforms': ['posX', 'posY', 'orientation', 'scale','shape'],
         'avail_transforms': ['posX', 'posY', 'orientation', 'scale', 'shape'],
-        'seed': 1,
-        'n_caps': 15,
-        'cap_dim': 15,
         'n_transforms': args.num_support_timesteps // 2,
-        'max_transform_len': 30,
-        'mu_init': 30.0,
-        'n_off_diag': 0,
-        'group_kernel': (10, 10, 1),
-        'n_is_samples': 10
+        'max_transform_len': 30
     }
     if args.dsprites:
         print("DSPRITES DATASET LOADING")
