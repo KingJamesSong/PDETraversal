@@ -1,6 +1,6 @@
 # PDETraversal
 
-ICML23 paper "[Latent Traversals in Generative Models as Potential Flows](https://arxiv.org/abs/)"  
+ICML23 paper "[Latent Traversals in Generative Models as Potential Flows](https://arxiv.org/abs/2304.12944)"  
 [Yue Song](https://kingjamessong.github.io/)<sup>1,2</sup>, [Andy Keller](https://scholar.google.com/citations?hl=en&user=Tb86kC0AAAAJ)<sup>1</sup>, [Nicu Sebe](https://scholar.google.com/citations?user=stFCYOAAAAAJ&hl=en)<sup>2</sup>, [Max Welling](https://scholar.google.com/citations?user=8200InoAAAAJ&hl=en)<sup>1</sup>  
 <sup>1</sup>University of Amsterdam, the Netherlands <br>
 <sup>2</sup>University of Trento, Italy <br> 
