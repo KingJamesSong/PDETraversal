@@ -82,12 +82,7 @@ def create_exp_dir(args):
             biggan_classes += '{}'.format(c)
         exp_dir += '{}'.format(biggan_classes)
     exp_dir += "-{}".format(args.reconstructor_type)
-    exp_dir += "-K{}-D{}".format(args.num_support_sets, args.num_support_dipoles)
-    if args.learn_alphas:
-        exp_dir += '-LearnAlphas'
-    if args.learn_gammas:
-        exp_dir += '-LearnGammas'
-    exp_dir += "-eps{}_{}".format(args.min_shift_magnitude, args.max_shift_magnitude)
+    exp_dir += "-K{}-D{}".format(args.num_support_sets, args.num_support_timesteps)
 
     # Create output directory (wip)
     wip_dir = osp.join("experiments", "wip", exp_dir)
