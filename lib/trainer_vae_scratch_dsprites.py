@@ -125,7 +125,6 @@ class TrainerVAEScratchDsprites(object):
         if iteration < self.params.max_iter - 1:
             print()
         print("      \\__Batch accuracy Index      : {:.03f}".format(stats['accuracy_index']))
-        print("      \\__Batch accuracy Time      : {:.03f}".format(stats['accuracy_time']))
         print("      \\__Classification loss : {:.08f}".format(stats['classification_loss']))
         print("      \\__Total loss          : {:.08f}".format(stats['total_loss']))
         print("         ===================================================================")
