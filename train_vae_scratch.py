@@ -10,7 +10,6 @@ import numpy as np
 import os
 from transforms import *
 from dsprites import *
-from Shapes3d import *
 import torchvision
 
 class DSprites(torch.utils.data.Dataset):
