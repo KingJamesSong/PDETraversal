@@ -8,7 +8,7 @@ import json
 from torchvision.transforms import ToPILImage
 from lib import *
 import numpy as np
-from vae import ConvVAE, ConvVAE2
+from vae import ConvVAE
 
 def text_save(filename, data):
     file = open(filename,'a')
