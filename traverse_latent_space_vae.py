@@ -116,11 +116,10 @@ def main():
     parser.add_argument('--gif', action='store_true', help="Create GIF traversals")
     parser.add_argument('--gif-size', type=int, default=256, help="set gif resolution")
     parser.add_argument('--gif-fps', type=int, default=30, help="set gif frame rate")
+    parser.add_argument("--vae_scratch", type=bool, default=False)
     # ================================================================================================================ #
     parser.add_argument('--cuda', dest='cuda', action='store_true', help="use CUDA during training")
     parser.add_argument('--no-cuda', dest='cuda', action='store_false', help="do NOT use CUDA during training")
-    parser.add_argument("--shapes3d", type=bool, default=False)
-    parser.add_argument("--vae_scratch", type=bool, default=False)
     parser.set_defaults(cuda=True)
     # ================================================================================================================ #
 
@@ -193,17 +192,15 @@ def main():
 
     
     S = WavePDE(num_support_sets=args_json.__dict__["num_support_sets"],
-                num_support_dipoles=args_json.__dict__["num_support_timesteps"],
+                num_support_timesteps=args_json.__dict__["num_support_timesteps"],
                 support_vectors_dim=G.latent_size)
 
     if args.verbose:
         print("  \\__Pre-trained weights: {}".format(support_sets_model))
     S.load_state_dict(torch.load(support_sets_model, map_location=lambda storage, loc: storage)['support_sets'])
     if args.vae_scratch:
-        if args.shapes3d == True:
-            G = ConvVAE(num_channel=3, latent_size=15 * 15 + 1, img_size=64)
-        else:
-            G = ConvVAE2(num_channel=3, latent_size=18 * 18, img_size=128)
+        
+        G = ConvVAE(num_channel=3, latent_size=15 * 15 + 1, img_size=64)
         G.load_state_dict(torch.load(support_sets_model, map_location=lambda storage, loc: storage)['vae'])
     if args.verbose:
         print("  \\__Set to evaluation mode")
@@ -317,7 +314,7 @@ def main():
             for step in range(0,half_steps):
                 cnt += 1
                 energy, shift, _ = S.inference(dim, w if args_json.__dict__["shift_in_w_space"] else z,
-                                               (step+1) * torch.ones(1, 1, requires_grad=True))
+                                               (step+1) * torch.ones(1, 1, requires_grad=True),G.decoder)
                 if shift.dim()==1:
                     shift = shift.unsqueeze(0)
                 #shift = shift.unsqueeze(0)
@@ -343,7 +340,7 @@ def main():
             for step in range(0,half_steps):
                 cnt += 1
                 energy, shift, _ = S.inference(dim, w if args_json.__dict__["shift_in_w_space"] else z,
-                                       (step+1) * torch.ones(1, 1, requires_grad=True))
+                                       (step+1) * torch.ones(1, 1, requires_grad=True),G.decoder)
                 if shift.dim()==1:
                     shift = shift.unsqueeze(0)
                 #shift = shift.unsqueeze(0)
