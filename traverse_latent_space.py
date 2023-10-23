@@ -396,7 +396,7 @@ def main():
             for step in range(0,half_steps):
                 cnt += 1
                 energy, shift = S.inference(dim, w if args_json.__dict__["shift_in_w_space"] else z,
-                                            step * torch.ones(1, 1, requires_grad=True), G)
+                                            (step+1) * torch.ones(1, 1, requires_grad=True), G)
                 print(energy)
                 if step==0:
                     energy_wave = np.array(energy.view(-1).cpu().detach().numpy())
