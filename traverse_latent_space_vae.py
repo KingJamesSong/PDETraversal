@@ -314,7 +314,7 @@ def main():
             for step in range(0,half_steps):
                 cnt += 1
                 energy, shift, _ = S.inference(dim, w if args_json.__dict__["shift_in_w_space"] else z,
-                                               (step+1) * torch.ones(1, 1, requires_grad=True),G.decoder)
+                                               step * torch.ones(1, 1, requires_grad=True),G.decoder)
                 if shift.dim()==1:
                     shift = shift.unsqueeze(0)
                 #shift = shift.unsqueeze(0)
@@ -340,7 +340,7 @@ def main():
             for step in range(0,half_steps):
                 cnt += 1
                 energy, shift, _ = S.inference(dim, w if args_json.__dict__["shift_in_w_space"] else z,
-                                       (step+1) * torch.ones(1, 1, requires_grad=True),G.decoder)
+                                       step * torch.ones(1, 1, requires_grad=True),G.decoder)
                 if shift.dim()==1:
                     shift = shift.unsqueeze(0)
                 #shift = shift.unsqueeze(0)
